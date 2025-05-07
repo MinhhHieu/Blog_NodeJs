@@ -5,7 +5,6 @@ const { render } = require("ejs");
 const jwt = require("jsonwebtoken");
 const cookieParse = require("cookie-parser");
 
-// cấu hình thêm blog
 const sharp = require("sharp");
 const validator = require("validator");
 
@@ -28,7 +27,7 @@ exports.blogUser = async (req, res) => {
 
     res.render("blogUser", { name: user.name, email: user.email, blogs });
   } catch (error) {
-    res.status(500).send("Error while fetching blog data");
+    res.status(500).send("Đã xảy ra lỗi khi tải trang blog");
   }
 };
 
@@ -53,7 +52,7 @@ exports.CreateBlog = [
       if (!validator.isLength(title, { min: 3, max: 100 })) {
         throw new Error("Tiêu đề phải có từ 3 đến 100 ký tự");
       }
-      if (!validator.isLength(description, { min: 10, max: 100000 })) {
+      if (!validator.isLength(description, { min: 10, max: 100000000 })) {
         throw new Error("Mô tả phải có từ 10 đến 100000 ký tự");
       }
 
@@ -142,12 +141,12 @@ exports.getBlogDetail = async (req, res) => {
     const blog = await Blog.findById(blogId);
 
     if (!blog) {
-      return res.status(404).send("Blog not found");
+      return res.status(404).send("Không tìm thấy blog");
     }
 
     res.render("blogDetail", { blog });
   } catch (error) {
-    res.status(500).send("Error while fetching blog data");
+    res.status(500).send("Đã xảy ra lỗi khi tải trang");
   }
 };
 
@@ -158,7 +157,7 @@ exports.DisplayBlogHome = async (req, res) => {
     const blogs = await Blog.find();
     res.redirect("/home");
   } catch (error) {
-    res.status(500).send("Error while fetching blog data");
+    res.status(500).send("Đã xảy ra lỗi khi tải trang");
   }
 };
 
@@ -174,7 +173,7 @@ exports.getHomePage = async (req, res) => {
     res.render("home", { name: user.name, email: user.email, blogs });
   } catch (error) {
     console.log(error);
-    res.status(500).send("Error while fetching data");
+    res.status(500).send("Đã xảy ra lỗi khi tải trang");
   }
 };
 

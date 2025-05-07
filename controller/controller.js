@@ -11,7 +11,7 @@ const Blog = require("../model/blog");
 exports.getLoginPage = async (req, res) => {
   if (req.cookies.jwt) {
     try {
-        const verify = jwt.verify(req.cookies.jwt, "minhhieu");
+        const verify = jwt.verify(req.cookies.jwt, "qwertyuioplkajshdgfbvncmzx1234567890QNJNJKEWFJWKF");
         const user = await User.findOne({ token: req.cookies.jwt });
         if (user) {
             if (user.role === 'admin') {
@@ -24,11 +24,9 @@ exports.getLoginPage = async (req, res) => {
               const blogs = await Blog.find();
               res.redirect("/home");
             }
-        } else {
-            res.send("error try catch");
         }
     } catch (error) {
-        res.send("erorr login");
+        res.send("Lỗi đăng nhập");
     }
 } else {
     res.render("login");
@@ -68,7 +66,7 @@ exports.createUser = async (req, res) => {
   try {
     const check = await User.findOne({ email: req.body.email });
     if (check) {
-        res.send("email already exists");
+        res.send("Email đã tồn tại!");
     } else {
         const token = jwt.sign({ email: req.body.email }, "qwertyuioplkajshfgdmznxbcvASDFGHJKLPQOWIEURYTVBNCMZ1234567890");
 
@@ -91,7 +89,7 @@ exports.createUser = async (req, res) => {
         res.redirect("/home");
     }
 } catch (error) {
-    res.send("wrong detail");
+    res.send("Tạo thất bại!");
 }
 };
 
@@ -110,13 +108,17 @@ exports.displayUsers = async (req, res) => {
 // Cập nhật người dùng
 exports.updateUser = async (req, res) => {
   const userId = req.params.id;
-  const token = req.cookies.jwt; // Lấy token từ cookie
+  // const token = req.cookies.jwt; 
+  const newToken = jwt.sign(
+    { email: req.body.email, role: req.body.role },
+    "qwertyuioplkajshfgdmznxbcvASDFGHJKLPQOWIEURYTVBNCMZ1234567890"
+  );
   const updatedData = {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
     role: req.body.role,
-    token: token,
+    token: newToken,
   };
 
   try {
@@ -133,36 +135,37 @@ exports.updateUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     const check = await User.findOne({ email: req.body.email });
-    const passCheck = await compare(req.body.password, check.password);
 
-    if (check && passCheck) {
-      const role = check.role; // Lấy vai trò từ database
-      if (role === 'admin') {
-        // Nếu là admin, điều hướng đến trang admin
-        const users = await User.find();
-        res.cookie("jwt", check.token, {
-          maxAge: 3600000,
-          httpOnly: true
-        });
-        const { totalUsers, totalAdmins } = await getUserCounts();
-        const { totalBlog } = await CountBlog();
-        const blogs = await Blog.find();
-        res.redirect("/admin")
-      } else {
-        // Nếu là user, điều hướng đến trang home
-        res.cookie("jwt", check.token, {
-          maxAge: 3600000,
-          httpOnly: true
-        });
-        const user = await User.findOne({ token: req.cookies.jwt });
-        const blogs = await Blog.find();
-        res.redirect("/home")
-      }
+    if (!check) return res.send("Email không tồn tại");
+
+    const passCheck = await compare(req.body.password, check.password);
+    if (!passCheck) return res.send("Sai mật khẩu");
+
+    // Tạo token mới theo thông tin mới nhất
+    const token = jwt.sign(
+      { email: check.email, role: check.role },
+      "minhhieu"
+    );
+
+    // Lưu token mới vào DB
+    check.token = token;
+    await check.save();
+
+    // Gửi cookie mới
+    res.cookie("jwt", token, {
+      maxAge: 3600000,
+      httpOnly: true,
+    });
+
+    // Chuyển hướng đúng theo vai trò
+    if (check.role === "admin") {
+      res.redirect("/admin");
     } else {
-      res.send("user detail exists");
+      res.redirect("/home");
     }
   } catch (error) {
-    res.send("wrong detail exit");
+    console.error("Lỗi đăng nhập:", error);
+    res.send("Đăng nhập thất bại");
   }
 };
 
@@ -212,7 +215,7 @@ exports.searchUser = async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error searching for user");
+    res.status(500).send("Không tìm thấy người dùng");
   }
 };
 
