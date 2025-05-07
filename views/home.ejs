@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/home.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="logo">User Page</a>
+      <div class="nav-items">
+        <a class="nav-link" ><%= name %></a>
+        <a class="nav-link" ><%= email %></a>
+        <a class="blogUser" href="/blogUser" style="color:dodgerblue;">Your Blog</a>
+        <form action="/userlogout" method="post">
+            <button class="download-btn" type="submit">Logout</button>
+        </form>
+      </div>
+    </nav>
+
+    <header>
+      <div class="container">
+        <div class="left">
+          <h1>This is the blog display page</h1>
+          <p>
+            This page will display all blogs for users to view
+          </p>
+        </div>
+
+        <div class="right" >
+          <img src="images/1.png" alt="" />
+        </div>
+      </div>
+    </header>
+
+    <div class="blog-header">
+        <h4 style="padding: 10px;">Read Blog Here</h3>
+      </div>
+      <div class="container-card">
+        <% blogs.forEach(blog => { %>
+          <div class="blog-card">
+            <img style="max-width: 100%; height: 200px; border-radius: 10px;" src="<%= blog.image %>" id="image" alt="<%= blog.title %>" />
+            <div class="blog-content">
+              <h3 class="blog-title" id="title"><%= blog.title %></h3>
+              <p class="blog-description" id="description">
+                <%= blog.description %>
+              </p>
+              <a href="/blog/<%= blog._id %>" style="color: #0D706e;" class="read-more">Read More</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    
+
+    <footer>
+      <div class="container">
+        <div class="content">
+          <div class="left">
+            <div class="logo">User Page</div>
+            <p>&copy; 2025 Minh Hieu and this is a personal blog project</p>
+          </div>
+
+          <div class="right">
+            <div class="links">
+              <h3>Quick Links</h3>
+              <ul>
+                <li>
+                  <a href="/home">Home</a>
+                </li>
+
+                <li>
+                  <a href="/blogUser">Your Blogs</a>
+                </li>
+
+                <li>
+                  <a href="#">About</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="links">
+              <h3>Contact Us</h3>
+              <ul>
+                <li>+84 123-4567</li>
+                <li>minhhieu@gmail.com</li>
+                <li>Da Nang City,Viet Nam</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>Minh Hieu</p>
+          <div class="socials">
+            <a href="#"><img src="/images/facebook-logo.svg" alt="" /></a>
+            <a href="#"><img src="images/instagram-logo.svg" alt="" /></a>
+            <a href="#"><img src="images/twitter-logo.svg" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

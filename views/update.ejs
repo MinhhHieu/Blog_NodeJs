@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update User</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Update User</h2>
+        <form action="/update/<%= user._id %>" method="post">
+            <div class="form-group">
+                <label for="name">Name update:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required autocomplete="off" value="<%= user.name %>">
+            </div>
+            <div class="form-group">
+                <label for="role">Role update:</label>
+                <input type="text" id="role" name="role" placeholder="Enter your role" required value="<%= user.role %>">
+            </div>
+            <div class="form-group">
+                <label for="email">Email update:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required autocomplete="off" value="<%= user.email %>">
+            </div>
+            <div class="form-group">
+                <label for="password">Email update:</label>
+                <input type="text" id="password" name="password" placeholder="Enter your password" required autocomplete="off" value="<%= user.password %>">
+            </div>
+            <button type="submit" class="submit-btn">Update User</button>
+        </form>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById("password");
+        const showPasswordCheckbox = document.getElementById("showPasswordCheckbox");
+
+        showPasswordCheckbox.addEventListener("change", function() {
+            if (showPasswordCheckbox.checked) {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
+    </script>
+</body>
+</html>

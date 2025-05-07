@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Admin</title>
+</head>
+<body>
+    <div class="main">
+        <div class="main-left" style="background-color: #333;">
+            <div class="main-left-top">
+                <h1 style="color: aliceblue; text-align: left;">Admin</h1>
+            </div>
+            <div class="main-left-bottom">
+                <li><a href="/admin"><i class="fa-solid fa-chart-pie"></i>Dashboard</a></li>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="main-right-top">
+                <div class="search">
+                    <form action="/search" method="post">
+                        <input type="text" id="search" name="search" placeholder="Search name or email user">
+                        <button type="submit" class="search-button" style="color: #ffffff;background-color:#5f89f0; border: none;padding: 0; width: 120px; height: 40px;
+                        cursor: pointer;">Search</button>
+                    </form>
+                </div>
+                <div class="other">
+                    <a href=""><img src="/images/avatar.jpg" alt=""></a>
+                    <div class="thongtin">
+                        <p id="NameAdmin">Name: <%= name %></p>
+                    <p id="EmailAdmin">Email: <%= email %></p>
+                    </div>
+                    <form action="/logout" method="post">
+                        <button type="submit" style="background-color: black;">Logout</button>
+                    </form>
+                </div>
+            </div>
+            <div class="main-right-bottom">
+                <h2>Admin Dashboard</h2>  
+
+                <!-- admin -->
+                <div class="main-right-bottom-icon">
+                    <div class="icon">
+                        <i class="fa-solid fa-users"></i>
+                        <p>Total User</p>
+                        <p><p><%= totalUsers %></p></p>
+
+                        <div class="icon-item">
+
+                        </div>
+                        
+                    </div>
+                    <div class="icon">
+                        <i style="background-color: #5f89f0;" class="fa-solid fa-cart-shopping"></i>
+                        <p style="width: 180px;">Total Admin</p>
+                        <p><p><%= totalAdmins %></p></p>
+
+                        <div class="icon-item">
+
+                        </div>
+                    </div>
+
+                    <div class="icon">
+                        <i style="background-color: #5f89f0;" class="fa-solid fa-cart-shopping"></i>
+                        <p>Total Blog</p>
+                        <p><p><%= totalBlog %></p></p>
+
+                        <div class="icon-item">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="main-right-bottom-profile">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-list">
+                            <% users.forEach(users => { %>
+                            <tr>
+                              <td><%= users._id %></td>
+                              <td><%= users.name %></td>
+                              <td><%= users.email %></td>
+                              <td><%= users.role %></td>
+                              <td class="action-buttons">
+                                <a class="edit-link" href="/update/<%= users._id %>">Edit</a>
+                                <form method="POST" action="/delete/<%= users._id %>" class="delete-form">
+                                  <button type="submit" class="delete-button">Delete</button>
+                                </form>
+                              </td>
+                            </tr>
+                            <% }) %>
+                          </tbody>
+                    </table>
+
+                    <h2>Manage Blog</h2>
+
+                <!-- blog -->
+                <div class="main-right-bottom-profile">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Blog Name</th>
+                            <th>Image Blog</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="user-list">
+                        <% blogs.forEach(blogs => { %>
+                        <tr>
+                          <td><%= blogs._id %></td>
+                          <td><%= blogs.title %></td>
+                          <td><%= blogs.image %></td>
+                          <td class="action-buttons">
+                            <form method="POST" action="/deleteblog/<%= blogs._id %>" class="delete-form">
+                              <button type="submit" class="delete-button">Delete</button>
+                            </form>
+                          </td>
+                        </tr>
+                        <% }) %>
+                      </tbody>
+                </table>
+
+            </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

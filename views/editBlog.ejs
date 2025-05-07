@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Blog</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Edit Blog</h2>
+      <form
+        action="/edit/<%= blog._id %>"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="form-group">
+          <label for="image">Image Blog</label>
+          <div class="image-input-group">
+            <input type="file" id="image" name="image" />
+            
+            <% if (blog.image) { %>
+            <div class="current-image-preview">
+              <p>Current image:</p>
+              <img src="/<%= blog.image %>" alt="Current Blog Image"
+                style="
+                  max-width: 150px;
+                  height: auto;
+                  border: 1px solid #ccc;"
+              />
+            </div>
+            <% } %>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="title">Title Blog:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= blog.title %>"
+            placeholder="Enter title blog"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description Blog:</label>
+          <textarea
+            id="description"
+            name="description"
+            rows="5"
+            placeholder="Enter blog description"
+            required
+          ><%= blog.description %></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Update</button>
+      </form>
+    </div>
+  </body>
+</html>

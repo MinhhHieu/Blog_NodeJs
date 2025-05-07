@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Detail</title>
+    <link rel="stylesheet" href="/detail.css">
+</head>
+<body>
+    <div class="blog-detail-container">
+        <div class="blog-content">
+            <h1 class="blog-title"><%= blog.title %></h1>
+            <img src="/uploads/<%= blog.image.split('/')[1] %>" class="blog-image" />
+            <p class="blog-description"><%= blog.description %></p>
+            <a href="/home" class="back-link">Back</a>
+        </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="content">
+          <div class="left">
+            <div class="logo">User Page</div>
+            <p>&copy; 2025 Minh Hieu and this is a personal blog project</p>
+          </div>
+
+          <div class="right">
+            <div class="links">
+              <h3>Quick Links</h3>
+              <ul>
+                <li>
+                  <a href="/home">Home</a>
+                </li>
+
+                <li>
+                  <a href="/blogUser">Your Blogs</a>
+                </li>
+
+                <li>
+                  <a href="#">ABout</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="links">
+              <h3>Contact Us</h3>
+              <ul>
+                <li>+84 123-4567</li>
+                <li>minhhieu@gmail.com</li>
+                <li>Da Nang City,Viet Nam</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>Minh Hieu</p>
+          <div class="socials">
+            <a href="#"><img src="/images/facebook-logo.svg" alt="" /></a>
+            <a href="#"><img src="images/instagram-logo.svg" alt="" /></a>
+            <a href="#"><img src="images/twitter-logo.svg" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+</body>
+</html>

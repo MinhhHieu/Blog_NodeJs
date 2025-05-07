@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.blog-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  /* min-height: 100vh; */
+  background-color: #fff;
+}
+
+.blog-content {
+  width: 1000px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.blog-title {
+  font-size: 2.5rem;
+  color: #000;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.blog-description {
+  font-size: 1.1rem;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.blog-image {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  margin: 20px auto; 
+  display: block;    
+}
+
+
+.back-link {
+  display: inline-block;
+  font-size: 1rem;
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #000;
+  padding: 5px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-link:hover {
+  background-color: #0d706e;
+  color: #fff;
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(90deg, #0a1300 0%, #001e0f 100%);
+  color: #fff;
+  padding-top: 50px;
+}
+
+footer .content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+footer .left p {
+  margin-top: 0;
+}
+
+footer .right {
+  display: flex;
+  gap: 40px;
+}
+
+footer h3 {
+  margin-top: 0;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+footer ul li {
+  margin: 8px 0;
+}
+footer ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+footer .copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer .socials {
+  display: flex;
+  gap: 40px;
+}
+
+footer .socials img {
+  height: 40px;
+}
+
