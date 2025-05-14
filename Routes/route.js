@@ -19,7 +19,6 @@ router.post("/logout", controller.logoutAdmin);
 router.post("/deleteblog/:id", controller.deleteBlog);
 
 // route user
-router.post("/home", UserController.DisplayBlogHome);
 router.get("/home", UserController.getHomePage);
 router.get("/blogUser", UserController.blogUser)
 

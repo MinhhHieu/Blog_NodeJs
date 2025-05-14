@@ -27,11 +27,11 @@ exports.blogUser = async (req, res) => {
 
     res.render("blogUser", { name: user.name, email: user.email, blogs });
   } catch (error) {
-    res.status(500).send("Đã xảy ra lỗi khi tải trang blog");
+    res.status(500).send("Đã xảy ra lỗi!");
   }
 };
 
-// [GET] /blog Hiển thị trang blog
+// [GET] /blog Hiển thị trang them blog
 exports.getCreateBlog = async (req, res) => {
   res.render("blog");
 };
@@ -146,21 +146,11 @@ exports.getBlogDetail = async (req, res) => {
 
     res.render("blogDetail", { blog });
   } catch (error) {
-    res.status(500).send("Đã xảy ra lỗi khi tải trang");
+    res.status(500).send("Đã xảy ra lỗi!");
   }
 };
 
-// display trang chủ
-exports.DisplayBlogHome = async (req, res) => {
-  try {
-    const user = await User.findOne({ token: req.cookies.jwt });
-    const blogs = await Blog.find();
-    res.redirect("/home");
-  } catch (error) {
-    res.status(500).send("Đã xảy ra lỗi khi tải trang");
-  }
-};
-
+// [GET] hiển thị trang chủ
 exports.getHomePage = async (req, res) => {
   try {
     const user = await User.findOne({ token: req.cookies.jwt });
@@ -173,7 +163,7 @@ exports.getHomePage = async (req, res) => {
     res.render("home", { name: user.name, email: user.email, blogs });
   } catch (error) {
     console.log(error);
-    res.status(500).send("Đã xảy ra lỗi khi tải trang");
+    res.status(500).send("Đã xảy ra lỗi!");
   }
 };
 
