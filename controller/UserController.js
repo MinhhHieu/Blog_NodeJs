@@ -120,7 +120,6 @@ exports.editPost = [
   }
 ];
 
-
 // [POST] /delete/:id xóa Blog
 exports.deleteBlog = async (req, res) => {
   const blogId = req.params.id;
