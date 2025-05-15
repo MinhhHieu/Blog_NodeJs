@@ -88,7 +88,7 @@ exports.editBlog = async (req, res) => {
   const blogId = req.params.id;
 
   const blog = await Blog.findOne({
-    _id: blogId
+    _id: blogId,
   });
   res.render("editBlog", { blog });
 };
@@ -103,7 +103,7 @@ exports.editPost = [
       const { title, description } = req.body;
       let updateData = {
         title,
-        description
+        description,
       };
 
       if (req.file) {
@@ -117,7 +117,7 @@ exports.editPost = [
       console.error("Lỗi khi cập nhật blog:", error);
       res.status(500).send("Có lỗi xảy ra khi chỉnh sửa blog");
     }
-  }
+  },
 ];
 
 // [POST] /delete/:id xóa Blog
@@ -180,14 +180,8 @@ exports.shareBlog = async (req, res) => {
   }
 };
 
-
 // Đăng xuất người dùng
 exports.logoutUser = (req, res) => {
-  // Xóa token khỏi cookie
   res.clearCookie("jwt");
-  // Sau đó điều hướng người dùng về trang đăng nhập
   res.redirect("/");
 };
-
-
-
