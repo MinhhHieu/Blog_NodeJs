@@ -5,6 +5,7 @@ const { render } = require("ejs");
 const jwt = require("jsonwebtoken");
 const cookieParse = require("cookie-parser");
 
+// sharp dùng css với ảnh
 const sharp = require("sharp");
 const validator = require("validator");
 
@@ -167,7 +168,7 @@ exports.getHomePage = async (req, res) => {
   }
 };
 
-// Share blog
+// [POST]Share blog
 exports.shareBlog = async (req, res) => {
   const blogId = req.params.id;
 

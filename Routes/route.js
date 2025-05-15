@@ -21,18 +21,13 @@ router.post("/deleteblog/:id", controller.deleteBlog);
 // route user
 router.get("/home", UserController.getHomePage);
 router.get("/blogUser", UserController.blogUser)
-
 router.post("/blog", UserController.CreateBlog);
 router.get("/blog", UserController.getCreateBlog);
-
 router.get("/blog/edit/:id", UserController.editBlog);
 router.post("/edit/:id", UserController.editPost);
-
 router.post("/blog/delete/:id", UserController.deleteBlog);
-
 router.get("/blog/:id", UserController.getBlogDetail); 
 router.post("/userlogout", UserController.logoutUser);
-
 router.post("/blog/share/:id", UserController.shareBlog);
 
 module.exports = router;

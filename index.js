@@ -6,7 +6,9 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 
+
 app.use(express.json());
+//xử lý dữ liệu từ form HTML
 app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
